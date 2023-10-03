@@ -1,0 +1,26 @@
+body{
+    background-color: #5c5447;
+    color: #ffffff;
+}
+h1{
+    color:#99c4ee;
+}
+h3{
+    color:#9eb9e3;
+}
+.yellow{
+    color: #ddd984;
+}
+.italic-style{
+    font-style: italic;
+}
+.bold-style{
+    font-weight: 100;
+}
+a{
+    color: red;
+    
+}
+#small-img{
+    height: 300px;
+}
