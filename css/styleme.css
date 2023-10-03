@@ -11,15 +11,14 @@ h3{
 .yellow{
     color: #ddd984;
 }
+.red{
+    color: red;
+}
 .italic-style{
     font-style: italic;
 }
 .bold-style{
     font-weight: 100;
-}
-a{
-    color: red;
-    
 }
 #small-img{
     height: 300px;
@@ -30,4 +29,10 @@ a:hover,
 a:active
 {
     text-decoration: none;
+}
+p::first-letter{
+    font-size: 2em;
+}
+dl dt {
+    color: #ddd984;
 }
