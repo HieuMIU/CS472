@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRM System</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/srm-system.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">MUM Golden Dome Market:::SRM System</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link border-left" href="#">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link border-left" href="#">Suppliers</a>
+              </li>
+            </ul>
+            <div class="right-header">
+                <button type="button" class="btn disable btn-primary text-nowrap">Hello Hieu!</button>
+                <button type="button" class="btn btn-light">Sign out</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <section class="form-title">
+            <h2>New Product Forms</h2>
+        </section>
+        <section>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="product-number" class="form-label mt-4">Product Number</label>
+                        <input type="text" class="form-control" id="product-number">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label mt-4">Name</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="unit-price" class="form-label mt-4">Unit price</label>
+                        <input type="number" class="form-control" id="unit-price">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="quantity-in-stock" class="form-label mt-4">Quantity In Stock</label>
+                        <input type="text" class="form-control" id="quantity-in-stock">
+                    </div>
+                    <div class="form-group">
+                        <label for="supplier" class="form-label mt-4">Supplier</label>
+                        <input type="text" class="form-control" id="supplier">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-supplied" class="form-label mt-4">Date Supplied</label>
+                        <input type="date" class="form-control" id="date-supplied">
+                        <small id="dateHelp" class="form-text text-muted">Enter a valid Date</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="button-footer">
+            <button type="button" class="btn btn-outline-dark">Reset</button>
+            <button type="button" class="btn btn-outline-danger">Cancel</button>
+            <button type="button" class="btn btn-outline-primary">Add Product</button>
+        </div>
+      </div>
+</body>
+</html>

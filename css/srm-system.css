@@ -1,0 +1,26 @@
+.border-left{
+    border-left: solid white 1px;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-left: 15px;
+    line-height: 2em;
+}
+.form-title{
+    margin: 50px;
+}
+.button-footer{
+    float:right;
+    margin-left: auto;
+    margin-right: 0;
+}
+.button-footer button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.margin-top-10{
+    margin-top: 10px;
+    align-items: center;
+}
+.checkbox{
+    margin-right: 5px;
+}
