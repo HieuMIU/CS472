@@ -18,6 +18,25 @@ let user = {
     loginFail() {
         alert(this.name + " failed to log in");
     }
-}
-
+};
+//bind
 askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+//call
+askPassword(() => user.loginOk.call(user),() => user.loginFail.call(user));
+//apply
+askPassword(() => user.loginOk.apply(user),() => user.loginFail.apply(user));
+//wrapper
+let userWrapper = {
+    name: "John",
+    loginOk() {
+        let self = this;
+        alert(self.name + " logged in");
+    },
+
+    loginFail() {
+        let self = this;
+        alert(self.name + " failed to log in");
+    }
+};
+
+askPassword(function() { userWrapper.loginOk() }, function() { userWrapper.loginFail() });
