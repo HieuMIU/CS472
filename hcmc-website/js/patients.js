@@ -1,78 +1,107 @@
+"use strict"
+const body = document.getElementById("tbodyPatientsList");
 
-const tbody = document.getElementById("tbodyPatientsList");
 const submitButton = document.getElementById("btnRegisterPatient");
-const form = document.getElementsByTagName("form");
 const parentIdInput = document.getElementById("patientIdNumber");
-parentIdInput.value = "EP-001-000001";
 const firstNameInput = document.getElementById("firstName");
-firstNameInput.value = "Ana";
 const middleInitialsInput = document.getElementById("middleInitials");
-middleInitialsInput.value = "J";
 const lastNameInput = document.getElementById("lastName");
-lastNameInput.value = "Smith";
 const dateOfBirthInput = document.getElementById("dateOfBirth");
-dateOfBirthInput.value = "1945-01-05";
 const ddlDepartmentInput = document.getElementById("ddlDepartment");
-ddlDepartmentInput.value = "Cardiology";
 const radioIsOutPatientYesInput = document.getElementById("radioIsOutPatientYes");
-const radioIsOutPatientNoInput = document.getElementById("radioIsOutPatientNo");
-radioIsOutPatientYesInput.checked = true;
-function addRow(){
-    var row = tbody.insertRow();
 
+var elderlyCheckbox = document.getElementById("chkElderlyPatients");
+var shoutoutPatientCheckbox = document.getElementById("chkShowOutPatients");
+
+function addNewPatient(){
+    var data = readData()
+    addRow(...data);
+}
+
+function readData(){
     const id = parentIdInput.value;
-    var cell1 = row.insertCell();
-    var text = document.createTextNode(id);
-    cell1.appendChild(text);
-
     const firstName = firstNameInput.value;
-    var cell2 = row.insertCell();
-    text = document.createTextNode(firstName);
-    cell2.appendChild(text);
-
     const middleInitials = middleInitialsInput.value;
-    var cel3 = row.insertCell();
-    text = document.createTextNode(middleInitials);
-    cel3.appendChild(text);
-
     const lastName = lastNameInput.value;
-    var cell4 = row.insertCell();
-    text = document.createTextNode(lastName);
-    cell4.appendChild(text);
-
     const dateOfBirth = dateOfBirthInput.value;
-    var cell5 = row.insertCell();
-    text = document.createTextNode(dateOfBirth);
-    cell5.appendChild(text);
-
     const ddlDepartment = ddlDepartmentInput.value;
-    var cell6 = row.insertCell();
-    text = document.createTextNode(ddlDepartment);
-    cell6.appendChild(text);
+    const radioIsOutPatient = radioIsOutPatientYesInput.checked;
+    return [id, firstName, middleInitials, lastName, dateOfBirth, ddlDepartment, radioIsOutPatient]
+}
 
-    const radioIsOutPatient = radioIsOutPatientYesInput.Checked;
-    var cell7 = row.insertCell();
+function addRow(id, firstName, middleInitials, lastName, dateOfBirth, ddlDepartment, radioIsOutPatient){
+    var row = body.insertRow();
+
+    var cell = row.insertCell();
+    var text = document.createTextNode(id);
+    cell.appendChild(text);
+
+    cell = row.insertCell();
+    text = document.createTextNode(firstName);
+    cell.appendChild(text);
+
+    cell = row.insertCell();
+    text = document.createTextNode(middleInitials);
+    cell.appendChild(text);
+
+    cell = row.insertCell();
+    text = document.createTextNode(lastName);
+    cell.appendChild(text);
+
+    cell = row.insertCell();
+    cell.classList.add("elderly-check");
+    text = document.createTextNode(dateOfBirth);
+    cell.appendChild(text);
+
+    cell = row.insertCell();
+    text = document.createTextNode(ddlDepartment);
+    cell.appendChild(text);
+
+    cell = row.insertCell();
+    cell.classList.add("out-patient-check");
     text = document.createTextNode(radioIsOutPatient ? "Yes" : "No");
-    cell7.appendChild(text);
+    cell.appendChild(text);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     submitButton.addEventListener('click', function(event) {
         // Prevent the default form submission behavior
         event.preventDefault();
-
-        addRow();
+        //add new row with data from the form
+        addNewPatient();
     });
 });
 
-function showElderlyPatientOnly(isShow){
-    if(isShow){
-        var trtags = document.getElementsByClassName("td");
-        for(let row of trtags){
-            row.classList.remove('d-none');
+function filterList(){
+    var rows = body.childNodes;
+    var hasElderlyFilter = elderlyCheckbox.checked;
+    var hasOutPatientFilter = shoutoutPatientCheckbox.checked;
+
+    for(let row of rows){
+        row.classList.remove('d-none');
+        
+        //add d-none class to <tr> if patients has 65 year olds or more
+        if(hasElderlyFilter){
+            var dobCell = row.querySelector(".elderly-check");
+            var dob = new Date(dobCell.textContent);
+            let currentDate = new Date();
+            if(currentDate.getFullYear() - dob.getFullYear() <= 65)
+                row.classList.add('d-none');
+        }
+        //add d-none class to <tr> if patients is out-patient
+        if(hasOutPatientFilter){
+            var dobCell = row.querySelector(".out-patient-check");
+            if(dobCell.textContent == "No")
+                row.classList.add('d-none');
         }
     }
+    
 }
 
-radioIsOutPatientYesInput.addEventListener('click', showElderlyPatientOnly(true));
-radioIsOutPatientYesInput.addEventListener('click', showElderlyPatientOnly(false));
+elderlyCheckbox.addEventListener('click', filterList);
+shoutoutPatientCheckbox.addEventListener('click', filterList);
+
+//add sample patients
+addRow("EP-001-000001","Ana","J","Smith","1945-1-5","Ear, Nose and Throat",false);
+addRow("P-001-000002","Bob","K","Jones","1985-5-4","Cardiology",true);
+addRow("EP-001-000003","Carlos","A","Hernandez","1957-3-13","Cardiology",false);
