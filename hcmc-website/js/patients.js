@@ -10,9 +10,6 @@ const dateOfBirthInput = document.getElementById("dateOfBirth");
 const ddlDepartmentInput = document.getElementById("ddlDepartment");
 const radioIsOutPatientYesInput = document.getElementById("radioIsOutPatientYes");
 
-var elderlyCheckbox = document.getElementById("chkElderlyPatients");
-var shoutoutPatientCheckbox = document.getElementById("chkShowOutPatients");
-
 function addNewPatient(){
     var data = readData()
     addRow(...data);
@@ -76,6 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function filterList(){
+    var elderlyCheckbox = document.getElementById("chkElderlyPatients");
+    var shoutoutPatientCheckbox = document.getElementById("chkShowOutPatients");
     var rows = body.childNodes;
     var hasElderlyFilter = elderlyCheckbox.checked;
     var hasOutPatientFilter = shoutoutPatientCheckbox.checked;
