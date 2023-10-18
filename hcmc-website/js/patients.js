@@ -10,6 +10,9 @@ const dateOfBirthInput = document.getElementById("dateOfBirth");
 const ddlDepartmentInput = document.getElementById("ddlDepartment");
 const radioIsOutPatientYesInput = document.getElementById("radioIsOutPatientYes");
 
+var elderlyCheckbox = document.getElementById("chkElderlyPatients");
+var shoutoutPatientCheckbox = document.getElementById("chkShowOutPatients");
+
 function addNewPatient(){
     var data = readData()
     addRow(...data);
@@ -70,11 +73,11 @@ document.addEventListener('DOMContentLoaded', function() {
         //add new row with data from the form
         addNewPatient();
     });
+    elderlyCheckbox.addEventListener('click', filterList);
+    shoutoutPatientCheckbox.addEventListener('click', filterList);
 });
 
 function filterList(){
-    var elderlyCheckbox = document.getElementById("chkElderlyPatients");
-    var shoutoutPatientCheckbox = document.getElementById("chkShowOutPatients");
     var rows = body.childNodes;
     var hasElderlyFilter = elderlyCheckbox.checked;
     var hasOutPatientFilter = shoutoutPatientCheckbox.checked;
@@ -100,8 +103,7 @@ function filterList(){
     
 }
 
-elderlyCheckbox.addEventListener('click', filterList);
-shoutoutPatientCheckbox.addEventListener('click', filterList);
+
 
 //add sample patients
 addRow("EP-001-000001","Ana","J","Smith","1945-1-5","Ear, Nose and Throat",false);
