@@ -66,6 +66,9 @@ function addRow(id, firstName, middleInitials, lastName, dateOfBirth, ddlDepartm
 document.addEventListener('DOMContentLoaded', function() {
     submitButton.addEventListener('click', function(event) {
         // Prevent the default form submission behavior
+        if (!patientId.checkValidity()) {
+            return;
+        }
         event.preventDefault();
         //add new row with data from the form
         addNewPatient();
